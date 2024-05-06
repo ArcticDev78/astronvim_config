@@ -36,7 +36,7 @@ return {
         neovide_initial_scale_factor = vim.g.neovide_scale_factor or 1,
         neovide_scale_factor = vim.g.neovide_scale_factor or 1,
         neovide_transparency = 0.98,
-        neovide_scroll_animation_length = 0.3,
+        neovide_scroll_animation_length = 0.2,
         neovide_cursor_vfx_mode = "railgun",
         neovide_cursor_vfx_particle_speed = 20.0,
         neovide_cursor_vfx_particle_lifetime = 0.85,
