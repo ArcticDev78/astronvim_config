@@ -17,6 +17,8 @@ return {
             end,
             desc = "Pick to close",
           },
+          -- My custom Find-and-Replace keybinding for the Grug-Far plugin
+          ["<Leader>fR"] = { "<cmd>GrugFar<cr>", desc = "Find and Replace" },
           -- tables with the `name` key will be registered with which-key if it's installed
           -- this is useful for naming menus
           ["<Leader>b"] = { name = "Buffers" },
