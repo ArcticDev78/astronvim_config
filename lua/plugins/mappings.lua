@@ -27,8 +27,25 @@ return {
             desc = "Neogit toggle",
           },
 
+          -- Open compiler
+          -- vim.api.nvim_set_keymap("n", "<F6>", "<cmd>CompilerOpen<cr>", { noremap = true, silent = true }),
+          ["<F6>"] = { "<cmd>CompilerOpen<cr>" },
+
+          -- Redo last selected option
+          -- vim.api.nvim_set_keymap(
+          --   "n",
+          --   "<S-F6>",
+          --   "<cmd>CompilerStop<cr>" -- (Optional, to dispose all tasks before redo)
+          --     .. "<cmd>CompilerRedo<cr>",
+          --   { noremap = true, silent = true }
+          -- ),
+
+          -- Toggle compiler results
+          -- vim.api.nvim_set_keymap("n", "<S-F7>", "<cmd>CompilerToggleResults<cr>", { noremap = true, silent = true }),
+
           -- quick save
           -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+          -- ["<F6>"] = { "<cmd>CompilerOpen<cr>" },
         },
         t = {
           -- setting a mapping to false will disable it

@@ -40,12 +40,12 @@ return {
   {
     "Zeioth/compiler.nvim",
     cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
-    dependencies = { "stevearc/overseer.nvim" },
+    dependencies = { "stevearc/overseer.nvim", "nvim-telescope/telescope.nvim" },
     opts = {},
   },
   {
     "stevearc/overseer.nvim",
-    commit = "19aac0426710c8fc0510e54b7a6466a03a1a7377",
+    commit = "6271cab7ccc4ca840faa93f54440ffae3a3918bd",
     cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
     opts = {
       task_list = {
@@ -53,16 +53,6 @@ return {
         min_height = 25,
         max_height = 25,
         default_detail = 1,
-        bindings = { ["q"] = function() vim.cmd "OverseerClose" end },
-      },
-      component_aliases = {
-        default = {
-          { "display_duration", detail_level = 2 },
-          "on_output_summarize",
-          "on_exit_set_status",
-          --"on_complete_notify",
-          "on_complete_dispose",
-        },
       },
     },
   },
@@ -254,5 +244,102 @@ return {
   {
     "MagicDuck/grug-far.nvim",
     config = function() require("grug-far").setup() end,
+  },
+  {
+    "folke/edgy.nvim",
+    dependencies = {
+      {
+        "AstroNvim/astrocore",
+        opts = {
+          mappings = {
+            n = {
+              ["<Leader>F"] = { function() require("edgy").toggle() end, desc = "Toggle Sidebars" },
+              ["<Leader>f"] = { function() require("edgy").select() end, desc = "Pick Sidebar" },
+            },
+          },
+        },
+      },
+    },
+    opts = {
+      exit_when_last = false,
+      bottom = {
+        { ft = "trouble", title = "Problems", pinned = true },
+        {
+          ft = "toggleterm",
+          title = "Terminal",
+          size = { height = 0.4 },
+          -- exclude floating windows
+          filter = function(buf, win) return vim.api.nvim_win_get_config(win).relative == "" end,
+        },
+        { ft = "qf", title = "QuickFix" },
+        {
+          ft = "help",
+          size = { height = 20 },
+          -- don't open help files in edgy that we're editing
+          filter = function(buf) return vim.bo[buf].buftype == "help" end,
+        },
+      },
+      left = {
+        -- "neo-tree",
+        {
+          title = "Files",
+          ft = "neo-tree",
+          filter = function(buf) return vim.b[buf].neo_tree_source == "filesystem" end,
+          pinned = true,
+          open = "Neotree position=left filesystem",
+          size = { height = 0.5 },
+        },
+        -- {
+        --   title = "Git Status",
+        --   ft = "neo-tree",
+        --   filter = function(buf) return vim.b[buf].neo_tree_source == "git_status" end,
+        --   pinned = true,
+        --   open = "Neotree position=right git_status",
+        -- },
+        -- {
+        --   title = "Buffers",
+        --   ft = "neo-tree",
+        --   filter = function(buf) return vim.b[buf].neo_tree_source == "buffers" end,
+        --   pinned = true,
+        --   open = "Neotree position=top buffers",
+        -- },
+        {
+          ft = "aerial",
+          title = "Symbol Outline",
+          pinned = true,
+          open = function() require("aerial").open() end,
+          size = { height = 0.2 },
+        },
+      },
+      right = {
+        -- {
+        --   ft = "aerial",
+        --   title = "Symbol Outline",
+        --   pinned = true,
+        --   open = function() require("aerial").open() end,
+        -- },
+        -- { ft = "minimap", title = "Minimap", pinned = true, size = { width = 0.0001 } },
+      },
+      keys = {
+        -- increase width
+        ["<C-Right>"] = function(win) win:resize("width", 2) end,
+        -- decrease width
+        ["<C-Left>"] = function(win) win:resize("width", -2) end,
+        -- increase height
+        ["<C-Up>"] = function(win) win:resize("height", 2) end,
+        -- decrease height
+        ["<C-Down>"] = function(win) win:resize("height", -2) end,
+      },
+    },
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    optional = true,
+    opts = {
+      source_selector = {
+        winbar = true,
+        statusline = false,
+      },
+    },
   },
 }
