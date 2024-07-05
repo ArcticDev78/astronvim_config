@@ -26,10 +26,17 @@ return {
             "<cmd>Neogit<cr>",
             desc = "Neogit toggle",
           },
+          ["<Leader>um"] = {
+            "<cmd>MinimapToggle<cr>",
+            desc = "Minimap toggle",
+          },
 
           -- Open compiler
           -- vim.api.nvim_set_keymap("n", "<F6>", "<cmd>CompilerOpen<cr>", { noremap = true, silent = true }),
           ["<F6>"] = { "<cmd>CompilerOpen<cr>" },
+
+          -- Toggle Problems window
+          ["<Leader>lp"] = { "<cmd>Trouble diagnostics<cr>", desc = "Problems diagnostics" },
 
           -- Redo last selected option
           -- vim.api.nvim_set_keymap(

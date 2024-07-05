@@ -267,7 +267,7 @@ return {
         {
           ft = "toggleterm",
           title = "Terminal",
-          size = { height = 0.4 },
+          size = { height = 0.3 },
           -- exclude floating windows
           filter = function(buf, win) return vim.api.nvim_win_get_config(win).relative == "" end,
         },
@@ -311,15 +311,15 @@ return {
           size = { height = 0.2 },
         },
       },
-      right = {
-        -- {
-        --   ft = "aerial",
-        --   title = "Symbol Outline",
-        --   pinned = true,
-        --   open = function() require("aerial").open() end,
-        -- },
-        -- { ft = "minimap", title = "Minimap", pinned = true, size = { width = 0.0001 } },
-      },
+      -- right = {
+      -- {
+      --   ft = "aerial",
+      --   title = "Symbol Outline",
+      --   pinned = true,
+      --   open = function() require("aerial").open() end,
+      -- },
+      -- { ft = "minimap", title = "Minimap", pinned = true, size = { width = 0.1 } },
+      -- },
       keys = {
         -- increase width
         ["<C-Right>"] = function(win) win:resize("width", 2) end,

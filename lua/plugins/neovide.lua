@@ -25,7 +25,8 @@ return {
   opts = {
     options = {
       opt = {
-        guifont = "JetBrainsMono Nerd Font Mono:h13",
+        -- guifont = "JetBrainsMono Nerd Font Mono:h13",
+        guifont = "GeistMono NFM:h13",
         -- line spacing
         linespace = 7,
       },
