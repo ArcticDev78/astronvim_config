@@ -19,6 +19,7 @@ return {
   -- GUI Configuration
   { import = "astrocommunity.recipes.neovide" },
   { import = "astrocommunity.recipes.heirline-mode-text-statusline" },
+  { import = "astrocommunity.recipes.heirline-vscode-winbar" },
   -- { import = "astrocommunity.recipes.telescope-nvchad-theme" },
   -- { import = "astrocommunity.recipes.heirline-nvchad-statusline" },
 

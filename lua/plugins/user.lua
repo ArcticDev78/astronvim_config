@@ -27,7 +27,7 @@ return {
       -- vim.g.minimap_highlight_range = true
       -- vim.g.minimap_highlight_search = true
       -- vim.g.minimap_git_colors = true
-      vim.cmd "let g:minimap_width = 10"
+      vim.cmd "let g:minimap_width = 8"
       vim.cmd "let g:minimap_auto_start = 1"
       -- vim.cmd "let g:minimap_auto_start_win_enter = 1"
       vim.cmd "let g:minimap_highlight_range = 1"
@@ -247,6 +247,11 @@ return {
   },
   {
     "folke/edgy.nvim",
+    event = "VeryLazy",
+    init = function()
+      vim.opt.laststatus = 3
+      vim.opt.splitkeep = "screen"
+    end,
     dependencies = {
       {
         "AstroNvim/astrocore",
@@ -262,22 +267,32 @@ return {
     },
     opts = {
       exit_when_last = false,
+      wo = {
+        winfixwidth = false,
+        winfixheight = false,
+      },
       bottom = {
-        { ft = "trouble", title = "Problems", pinned = true },
+        { ft = "trouble", title = "Problems", pinned = true, size = { height = 0.1 } },
         {
           ft = "toggleterm",
           title = "Terminal",
-          size = { height = 0.3 },
+          size = { height = 0.1 },
           -- exclude floating windows
           filter = function(buf, win) return vim.api.nvim_win_get_config(win).relative == "" end,
         },
         { ft = "qf", title = "QuickFix" },
         {
           ft = "help",
-          size = { height = 20 },
+          size = { height = 0.1 },
           -- don't open help files in edgy that we're editing
           filter = function(buf) return vim.bo[buf].buftype == "help" end,
         },
+        -- {
+        --   ft = "dapui_console",
+        --   title = "Debug",
+        --   pinned = true,
+        --   -- size = { height = 0.1 },
+        -- },
       },
       left = {
         -- "neo-tree",
@@ -305,12 +320,20 @@ return {
         -- },
         {
           ft = "aerial",
-          title = "Symbol Outline",
+          title = "Outline",
           pinned = true,
           open = function() require("aerial").open() end,
           size = { height = 0.2 },
         },
       },
+      -- top = {
+      --   {
+      --     ft = "dap-repl",
+      --     title = "Debug Controls",
+      --     pinned = true,
+      --     size = { height = 0.1 },
+      --   },
+      -- },
       -- right = {
       -- {
       --   ft = "aerial",
@@ -318,7 +341,7 @@ return {
       --   pinned = true,
       --   open = function() require("aerial").open() end,
       -- },
-      -- { ft = "minimap", title = "Minimap", pinned = true, size = { width = 0.1 } },
+      -- { ft = "minimap", title = "Minimap", pinned = true, size = { height = 0.001 } },
       -- },
       keys = {
         -- increase width
@@ -341,5 +364,15 @@ return {
         statusline = false,
       },
     },
+  },
+  {
+    "pwntester/octo.nvim",
+    config = function()
+      require("octo").setup {
+        suppress_missing_scope = {
+          projects_v2 = true,
+        },
+      }
+    end,
   },
 }
