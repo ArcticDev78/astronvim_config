@@ -280,7 +280,7 @@ return {
           -- exclude floating windows
           filter = function(buf, win) return vim.api.nvim_win_get_config(win).relative == "" end,
         },
-        { ft = "qf", title = "QuickFix" },
+        -- { ft = "qf", title = "QuickFix" },
         {
           ft = "help",
           size = { height = 0.1 },
@@ -374,5 +374,16 @@ return {
         },
       }
     end,
+  },
+  {
+    "OXY2DEV/markview.nvim",
+
+    dependencies = {
+      -- You may not need this if you don't lazy load
+      -- Or if the parsers are in your $RUNTIMEPATH
+      "nvim-treesitter/nvim-treesitter",
+
+      "nvim-tree/nvim-web-devicons",
+    },
   },
 }
